@@ -1,12 +1,36 @@
 //Write a C Program to Search an Element in a Descending Order Array.
 #include <stdio.h>
 
+int arr[100], n, key;
+int found = 0;
+
+void binarySearch(int low, int high)
+{
+    int mid;
+
+    if(low <= high)
+    {
+        mid = (low + high) / 2;
+
+        if(arr[mid] == key)
+        {
+            printf("Element found at position %d", mid + 1);
+            found = 1;
+        }
+        else if(key < arr[mid])
+        {
+            binarySearch(low, mid - 1);
+        }
+        else
+        {
+            binarySearch(mid + 1, high);
+        }
+    }
+}
+
 int main()
 {
-    int arr[100], n, i;
-    int key;
-    int low, high, mid;
-    int found = 0;
+    int i;
 
     printf("Enter number of elements: ");
     scanf("%d", &n);
@@ -20,30 +44,12 @@ int main()
     printf("Enter element to search: ");
     scanf("%d", &key);
 
-    low = 0;
-    high = n - 1;
+    binarySearch(0, n - 1);
 
-    while(low <= high)
+    if(found == 0)
     {
-        mid = (low + high) / 2;
-
-        if(arr[mid] == key)
-        {
-            found = 1;
-            break;
-        }
-        else if(key < arr[mid])
-        {
-            high = mid - 1;
-        }
-        else
-        {
-            low = mid + 1;
-        }
+        printf("Element not found");
     }
 
-    if(found)
-        printf("Element found at position %d", mid + 1);
-    else
-        printf("Element not found");
+    return 0;
 }
