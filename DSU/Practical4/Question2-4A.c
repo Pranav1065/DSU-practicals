@@ -11,9 +11,11 @@ int main()
     printf("Enter number of elements: ");
     scanf("%d", &n);
 
-    printf("Enter array elements in descending order:\n");
+    printf("Enter sorted array:\n");
     for(i = 0; i < n; i++)
+    {
         scanf("%d", &arr[i]);
+    }
 
     printf("Enter element to search: ");
     scanf("%d", &key);
@@ -30,7 +32,7 @@ int main()
             found = 1;
             break;
         }
-        else if(key > arr[mid])
+        else if(key < arr[mid])
         {
             high = mid - 1;
         }
@@ -44,6 +46,4 @@ int main()
         printf("Element found at position %d", mid + 1);
     else
         printf("Element not found");
-
-    return 0;
 }
